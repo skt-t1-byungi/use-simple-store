@@ -1,5 +1,6 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import produce from 'immer'
+import equal from 'fast-deep-equal'
 
 type Listener<T> = (state: T) => void
 type Mutator<T> = (state: T) => T
@@ -22,7 +23,10 @@ export class MiniStore<T extends object> {
     }
 
     public update (mutate: Mutator<T>) {
-        this._state = produce(this._state, mutate) as T
+        const nextState = produce(this._state, mutate) as T
+        if (equal(this._state, nextState)) return
+
+        this._state = nextState
         this._listeners.forEach(fn => fn(this._state))
     }
 
@@ -40,8 +44,14 @@ export class MiniStore<T extends object> {
         selector = useCallback(selector, deps)
         const [state, setState] = useState(() => selector!(this._state))
 
+        const ref = useRef(state)
+        useEffect(() => { ref.current = state }, [state])
+
         useEffect(() => {
-            const listener = () => setState(selector!(this._state))
+            const listener = () => {
+                const nextState = selector!(this._state)
+                if (!equal(ref.current, nextState)) setState(nextState)
+            }
             return this.subscribe(listener)
         }, [selector])
 
@@ -50,3 +60,9 @@ export class MiniStore<T extends object> {
 }
 
 function passThrough<T> (val: T) { return val }
+
+export function createStore<T extends object> (initialState: T) {
+    return new MiniStore(initialState)
+}
+
+export default createStore
