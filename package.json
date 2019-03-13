@@ -3,9 +3,19 @@
     "version": "0.0.0",
     "main": "dist/index.js",
     "license": "MIT",
+    "scripts": {
+        "test": "ava",
+        "build": "rm -rf dist && tsc"
+    },
     "devDependencies": {
+        "@types/jsdom": "^12.2.3",
         "@types/react": "^16.8.8",
+        "ava": "^1.3.1",
+        "browser-env": "^3.2.6",
         "react": "^16.8.4",
+        "react-dom": "^16.8.4",
+        "react-hooks-testing-library": "^0.3.6",
+        "ts-node": "^8.0.3",
         "tslint": "^5.13.1",
         "tslint-config-byungi": "^0.1.1",
         "typescript": "^3.3.3333"
@@ -16,5 +26,14 @@
     "dependencies": {
         "fast-deep-equal": "^2.0.1",
         "immer": "^2.1.2"
+    },
+    "ava": {
+        "compileEnhancements": false,
+        "extensions": [
+            "ts"
+        ],
+        "require": [
+            "ts-node/register"
+        ]
     }
 }
