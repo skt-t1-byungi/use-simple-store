@@ -6,7 +6,7 @@ type Listener<T> = (state: T) => void
 type Mutator<T> = (state: T) => T
 type Selector<T,Result> = (state: T) => Result
 
-export class MiniStore<T extends object> {
+export class Store<T extends object> {
     private _state: T
     private _listeners: Array<Listener<T>> = []
 
@@ -62,7 +62,7 @@ export class MiniStore<T extends object> {
 function passThrough<T> (val: T) { return val }
 
 export function createStore<T extends object> (initialState: T) {
-    return new MiniStore(initialState)
+    return new Store(initialState)
 }
 
 export default createStore
