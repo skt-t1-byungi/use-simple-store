@@ -5,18 +5,19 @@ type Listener<T> = (state: T) => void
 type Mutator<T> = (state: T) => T
 type Selector<T,Result> = (state: T) => Result
 
-export class MiniStore<T> {
+export class MiniStore<T extends object> {
     private _state: T
     private _listeners: Array<Listener<T>> = []
 
     constructor (initialState: T) {
-        this._state = initialState
+        this._state = Object(initialState)
         this.getState = this.getState.bind(this)
         this.update = this.update.bind(this)
+        this.subscribe = this.subscribe.bind(this)
         this.useStore = this.useStore.bind(this)
     }
 
-    public getState () {
+    public getState (): Readonly<T> {
         return { ...this._state }
     }
 
@@ -27,10 +28,10 @@ export class MiniStore<T> {
 
     public subscribe (listener: Listener<T>) {
         this._listeners.push(listener)
-    }
 
-    public unsubscribe (listener: Listener<T>) {
-        this._listeners = this._listeners.filter(fn => fn !== listener)
+        return () => {
+            this._listeners.splice(this._listeners.indexOf(listener), 1)
+        }
     }
 
     public useStore<Result= T> (selector?: Selector<T,Result>, deps: any[] = []) {
@@ -41,8 +42,7 @@ export class MiniStore<T> {
 
         useEffect(() => {
             const listener = () => setState(selector!(this._state))
-            this.subscribe(listener)
-            return () => this.unsubscribe(listener)
+            return this.subscribe(listener)
         }, [selector])
 
         return state
