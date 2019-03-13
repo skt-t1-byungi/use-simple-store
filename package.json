@@ -1,0 +1,19 @@
+{
+    "name": "use-ministore",
+    "version": "0.0.0",
+    "main": "dist/index.js",
+    "license": "MIT",
+    "devDependencies": {
+        "@types/react": "^16.8.8",
+        "react": "^16.8.4",
+        "tslint": "^5.13.1",
+        "tslint-config-byungi": "^0.1.1",
+        "typescript": "^3.3.3333"
+    },
+    "peerDependencies": {
+        "react": "^16.8.4"
+    },
+    "dependencies": {
+        "immer": "^2.1.2"
+    }
+}
