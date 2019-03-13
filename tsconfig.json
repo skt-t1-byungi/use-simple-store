@@ -5,7 +5,9 @@
         "lib": ["esnext"],
         "declaration": true,
         "outDir": "dist",
-        "strict": true,
-        "esModuleInterop": true
-    }
+        "strict": true
+    },
+    "include": [
+        "src"
+    ]
 }

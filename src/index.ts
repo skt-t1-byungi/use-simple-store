@@ -1,9 +1,9 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
 import produce from 'immer'
-import equal from 'fast-deep-equal'
+import equal = require('fast-deep-equal')
 
 type Listener<T> = (state: T) => void
-type Mutator<T> = (state: T) => T
+type Mutator<T> = (state: T) => void
 type Selector<T,Result> = (state: T) => Result
 
 export class Store<T extends object> {
