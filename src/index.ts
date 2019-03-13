@@ -12,6 +12,7 @@ export class MiniStore<T> {
     constructor (initialState: T) {
         this._state = initialState
         this.getState = this.getState.bind(this)
+        this.update = this.update.bind(this)
         this.useStore = this.useStore.bind(this)
     }
 
@@ -19,7 +20,7 @@ export class MiniStore<T> {
         return { ...this._state }
     }
 
-    public dispatch (mutate: Mutator<T>) {
+    public update (mutate: Mutator<T>) {
         this._state = produce(this._state, mutate) as T
         this._listeners.forEach(fn => fn(this._state))
     }
