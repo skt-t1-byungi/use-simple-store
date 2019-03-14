@@ -23,7 +23,7 @@ export class Store<T extends object> {
     }
 
     public update (mutate: Mutator<T>) {
-        const nextState = produce(this._state, mutate) as T
+        const nextState = produce(this._state, mutate)
         if (equal(this._state, nextState)) return
 
         this._state = nextState
