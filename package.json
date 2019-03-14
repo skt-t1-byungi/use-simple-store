@@ -1,7 +1,13 @@
 {
     "name": "use-ministore",
+    "description": "A really simple React Global State Management hook.",
     "version": "0.0.0",
     "main": "dist/index.js",
+    "keywords": [
+        "react",
+        "hook",
+        "state"
+    ],
     "license": "MIT",
     "scripts": {
         "test": "ava",
