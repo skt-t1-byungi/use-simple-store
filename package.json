@@ -3,6 +3,7 @@
     "description": "A really simple global state management using react hooks.",
     "version": "0.0.0",
     "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "repository": "https://github.com/skt-t1-byungi/use-simple-store",
     "author": "skt-t1-byungi <tiniwz@gmail.com>",
     "keywords": [
@@ -14,7 +15,8 @@
     "license": "MIT",
     "scripts": {
         "test": "ava",
-        "build": "rm -rf dist && tsc"
+        "build": "rm -rf dist && tsc",
+        "prepublishOnly": "npm run test && npm run build"
     },
     "devDependencies": {
         "@types/jsdom": "^12.2.3",
