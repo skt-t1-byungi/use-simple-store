@@ -79,6 +79,16 @@ update(state => state.count++) // => count: 1
 update(state => state.count++) // => count: 2
 ```
 
+#### Unsubscribe
+The `subscribe` returns a function to cancel the subscription.
+```js
+const unsubscribe = subscribe(listener)
+
+/* ... */
+
+unsubscribe()
+```
+
 ### store.getState()
 Returns state.
 
