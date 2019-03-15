@@ -19,7 +19,7 @@ export class Store<T extends object> {
     }
 
     public getState (): Readonly<T> {
-        return { ...this._state }
+        return this._state
     }
 
     public update (mutate: Mutator<T>) {
@@ -43,13 +43,13 @@ export class Store<T extends object> {
 
         const [state, setState] = useState(() => selector!(this._state))
 
-        const ref = useRef(state)
-        useEffect(() => { ref.current = state }, [state])
+        const prevRef = useRef(state)
+        useEffect(() => { prevRef.current = state }, [state])
 
         useEffect(() => {
             const listener = () => {
                 const nextState = selector!(this._state)
-                if (!equal(ref.current, nextState)) setState(nextState)
+                if (!equal(prevRef.current, nextState)) setState(nextState)
             }
             return this.subscribe(listener)
         }, [])
