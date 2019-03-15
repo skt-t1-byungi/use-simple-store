@@ -1,6 +1,7 @@
-import { useEffect, useState, useCallback, useRef } from 'react'
+import { useEffect, useCallback, useRef } from 'react'
 import produce from 'immer'
 import equal = require('fast-deep-equal')
+import useForceUpdate from 'use-force-update'
 
 type Listener<T> = (state: T) => void
 type Mutator<T> = (state: T) => void
@@ -40,17 +41,18 @@ export class Store<T extends object> {
 
     public useStore<Result= T> (selector?: Selector<T,Result>, deps: any[] = []) {
         if (!selector) selector = passThrough as Selector<T,Result>
-
         selector = useCallback(selector, deps)
-        const [state, setState] = useState(() => selector!(this._state))
 
-        const ref = useRef(state)
-        useEffect(() => { ref.current = state }, [state])
+        const state = selector(this._state)
+        const forceUpdate = useForceUpdate()
+
+        const prevRef = useRef(state)
+        useEffect(() => { prevRef.current = state }, [state])
 
         useEffect(() => {
             const listener = () => {
                 const nextState = selector!(this._state)
-                if (!equal(ref.current, nextState)) setState(nextState)
+                if (!equal(prevRef.current, nextState)) forceUpdate()
             }
             return this.subscribe(listener)
         }, [selector])
