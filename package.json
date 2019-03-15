@@ -1,5 +1,5 @@
 {
-    "name": "use-ministore",
+    "name": "use-simple-store",
     "description": "A really simple global state management using react hooks.",
     "version": "0.0.0",
     "main": "dist/index.js",
