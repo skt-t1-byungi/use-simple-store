@@ -11,9 +11,7 @@ test('render, update', t => {
     t.deepEqual(result.current, { n: 0 })
 
     act(() => {
-        store.update(s => {
-            s.n++
-        })
+        store.update(s => s.n++)
     })
 
     t.deepEqual(result.current, { n: 1 })

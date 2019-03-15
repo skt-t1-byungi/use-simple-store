@@ -1,9 +1,9 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
-import produce from 'immer'
+import produce, { Draft } from 'immer'
 import equal = require('fast-deep-equal')
 
 type Listener<T> = (state: T) => void
-type Mutator<T> = (state: T) => void
+type Mutator<T> = (state: Draft<T>) => void
 type Selector<T,Result> = (state: T) => Result
 
 export class Store<T extends object> {
@@ -23,7 +23,7 @@ export class Store<T extends object> {
     }
 
     public update (mutate: Mutator<T>) {
-        const nextState = produce(this._state, mutate)
+        const nextState = produce(this._state, draft => { mutate(draft) })
         if (equal(this._state, nextState)) return
 
         this._state = nextState
