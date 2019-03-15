@@ -19,6 +19,15 @@ test('render, update', t => {
     t.deepEqual(result.current, { n: 1 })
 })
 
+test('selector, change selector', async t => {
+    const initialState = { a: 'hello', b: 'world' }
+    const store = createStore(initialState)
+    const { result, rerender } = renderHook((p: keyof typeof initialState = 'a') => store.useStore(s => s[p], [p]))
+    t.is(result.current, 'hello')
+    rerender('b')
+    t.is(result.current, 'world')
+})
+
 test('rendering should not be done twice in nested components.', t => {
     const store = createStore({ val: 'hello' })
     let calls = 0
