@@ -1,6 +1,8 @@
 # use-simple-store 🏬
 A really simple global state management using react hooks.
 
+[![npm](https://flat.badgen.net/npm/v/use-simple-store)](https://www.npmjs.com/package/use-simple-store)
+
 ## Install
 ```sh
 npm i use-simple-store
