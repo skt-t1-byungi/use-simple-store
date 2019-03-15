@@ -3,10 +3,13 @@
     "description": "A really simple global state management using react hooks.",
     "version": "0.0.0",
     "main": "dist/index.js",
+    "repository": "https://github.com/skt-t1-byungi/use-simple-store",
+    "author": "skt-t1-byungi <tiniwz@gmail.com>",
     "keywords": [
         "react",
         "hook",
-        "state"
+        "state",
+        "store"
     ],
     "license": "MIT",
     "scripts": {
