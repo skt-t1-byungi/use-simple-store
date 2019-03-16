@@ -53,7 +53,7 @@ const deleteTodo = id => update(state => {
 The `update` function does not support promise. If you need an asynchronous update, see the example below: 👇
 
 ```js
-function fetchTodos() {
+async function fetchTodos() {
     update(state => state.fetching = true)
 
     const todos = await fetchTodosAsync()
