@@ -93,7 +93,7 @@ unsubscribe()
 Returns current state.
 
 ### store.useStore([selector])
-A react hooks to subscribe to store state changes.
+A react hook to subscribe to store state changes.
 
 #### selector
 Select only the necessary state of the store. When the state of the store is large, its performance is better.
