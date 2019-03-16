@@ -106,7 +106,7 @@ function Todo({id}) {
         update(s => s.todos[id].toggle = !todo.toggle)
     }
 
-    return <li onClick={handleClick}>{todo}</li>)
+    return <li onClick={handleClick}>{todo.text}</li>)
 }
 ```
 
