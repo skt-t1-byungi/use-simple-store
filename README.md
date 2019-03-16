@@ -90,7 +90,7 @@ unsubscribe()
 ```
 
 ### store.getState()
-Returns state.
+Returns current state.
 
 ### store.useStore([selector])
 A react hooks to subscribe to store state changes.
