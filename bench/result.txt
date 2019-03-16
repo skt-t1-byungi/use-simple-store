@@ -2,8 +2,8 @@ NANOBENCH version 2
 > node_modules\ts-node\dist\bin.js bench\run.ts
 
 # test
-ok ~656 ms (0 s + 655988600 ns)
+ok ~737 ms (0 s + 736852800 ns)
 
 all benchmarks completed
-ok ~656 ms (0 s + 655988600 ns)
+ok ~737 ms (0 s + 736852800 ns)
 
