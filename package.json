@@ -46,7 +46,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-push": "npm run bench"
+            "pre-push": "npm run bench && git commit -am bench"
         }
     },
     "ava": {
