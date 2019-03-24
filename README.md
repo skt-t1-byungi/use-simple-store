@@ -2,6 +2,10 @@
 A really simple global state management using react hooks.
 
 [![npm](https://flat.badgen.net/npm/v/use-simple-store)](https://www.npmjs.com/package/use-simple-store)
+[![travis](https://flat.badgen.net/travis/skt-t1-byungi/use-simple-store)](https://travis-ci.org/skt-t1-byungi/use-simple-store)
+[![npm](https://flat.badgen.net/badge/typescript/3.3.4/blue)](https://www.npmjs.com/package/use-simple-store)
+[![npm](https://flat.badgen.net/github/license/skt-t1-byungi/use-simple-store)](https://github.com/skt-t1-byungi/use-simple-store/blob/master/LICENSE)
+
 
 ## Install
 ```sh
