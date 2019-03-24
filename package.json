@@ -47,11 +47,6 @@
         "fast-deep-equal": "^2.0.1",
         "immer": "^2.1.4"
     },
-    "husky": {
-        "hooks": {
-            "pre-push": "npm run bench && git commit -am bench"
-        }
-    },
     "ava": {
         "compileEnhancements": false,
         "extensions": [
