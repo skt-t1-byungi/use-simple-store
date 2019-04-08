@@ -24,7 +24,7 @@ test('subscribe, unsubscribe', t => {
 test('If the state does not change, do not emit.', t => {
     t.plan(1)
     const store = createStore({ val: 'test' })
-    store.subscribe(s => t.pass())
+    store.subscribe(() => t.pass())
     store.update(s => { s.val = 'test' })
     store.update(s => { s.val = 'test' })
     store.update(s => { s.val = 'change' })
