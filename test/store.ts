@@ -30,3 +30,10 @@ test('If the state does not change, do not emit.', t => {
     store.update(s => { s.val = 'change' })
     store.update(s => { s.val = 'change' })
 })
+
+test('Update with replacement', t => {
+    const store = createStore({ a: '11' })
+    t.deepEqual(store.getState(), { a: '11' })
+    store.update(() => ({ b: '22' }))
+    t.deepEqual(store.getState(), { b: '22' } as any)
+})
