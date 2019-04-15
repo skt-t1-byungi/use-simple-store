@@ -3,8 +3,8 @@ A really simple global state management using react hooks.
 
 [![npm](https://flat.badgen.net/npm/v/use-simple-store)](https://www.npmjs.com/package/use-simple-store)
 [![travis](https://flat.badgen.net/travis/skt-t1-byungi/use-simple-store)](https://travis-ci.org/skt-t1-byungi/use-simple-store)
-[![npm](https://flat.badgen.net/badge/typescript/3.3.4/blue)](https://www.npmjs.com/package/use-simple-store)
-[![npm](https://flat.badgen.net/github/license/skt-t1-byungi/use-simple-store)](https://github.com/skt-t1-byungi/use-simple-store/blob/master/LICENSE)
+[![typescript](https://flat.badgen.net/badge/typescript/3.3.4/blue)](https://www.typescriptlang.org/)
+[![license](https://flat.badgen.net/github/license/skt-t1-byungi/use-simple-store)](https://github.com/skt-t1-byungi/use-simple-store/blob/master/LICENSE)
 
 
 ## Install
@@ -45,8 +45,8 @@ Create a store.
 Update the state by mutating. Use [immer](https://github.com/mweststrate/immer) internally.
 
 ```js
-const addTodo = (id, todo) => update(state => {
-    state.todos[id] = todo
+const addTodo = (id, text) => update(state => {
+    state.todos[id] = { id, text, done: false }
 })
 
 const deleteTodo = id => update(state => {
@@ -58,7 +58,9 @@ The `update` function does not support promise. If you need an asynchronous upda
 
 ```js
 async function fetchTodos() {
-    update(state => state.fetching = true)
+    update(state => {
+        state.fetching = true
+    })
 
     const todos = await fetchTodosAsync()
 
@@ -79,8 +81,8 @@ subscribe(state => {
     console.log(`count: ${state.count}`)
 })
 
-update(state => state.count++) // => count: 1
-update(state => state.count++) // => count: 2
+update(state => { state.count++ }) // => count: 1
+update(state => { state.count++ }) // => count: 2
 ```
 
 #### Unsubscribe
@@ -107,7 +109,7 @@ function Todo({id}) {
     const todo = useStore(s => s.todos[id])
 
     const handleClick = () => {
-        update(s => s.todos[id].toggle = !todo.toggle)
+        update(s => { s.todos[id].done = !todo.done })
     }
 
     return <li onClick={handleClick}>{todo.text}</li>)
