@@ -1,7 +1,7 @@
 {
     "name": "use-simple-store",
     "description": "A really simple global state management using react hooks.",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "repository": "https://github.com/skt-t1-byungi/use-simple-store",
