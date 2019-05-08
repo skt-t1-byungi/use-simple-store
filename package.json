@@ -45,7 +45,7 @@
     },
     "dependencies": {
         "fast-deep-equal": "^2.0.1",
-        "immer": "^2.1.4"
+        "immer": "^3.0.0"
     },
     "ava": {
         "compileEnhancements": false,
