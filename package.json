@@ -34,7 +34,7 @@
         "nanobench": "2.1.1",
         "react": "16.8.6",
         "react-dom": "16.8.6",
-        "react-hooks-testing-library": "0.4.1",
+        "react-hooks-testing-library": "0.5.0",
         "ts-node": "8.1.0",
         "tslint": "5.16.0",
         "tslint-config-byungi": "0.1.1",
