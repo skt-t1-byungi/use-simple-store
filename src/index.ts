@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import produce, { Draft } from 'immer'
 import useForceUpdate from 'use-force-update'
 import equal = require('fast-deep-equal')
@@ -40,27 +40,25 @@ export class Store<T extends object> {
     }
 
     public useStore<Result= T> (selector: Selector<T,(Result | T) > = passThrough, deps: any[] = []): Result {
-        const selectorRef = useRef(selector)
-        useEffect(() => { selectorRef.current = selector }, deps)
+        const currSelector = useCallback(selector, deps)
+
+        const prevSelectorRef = useRef(selector)
+        useEffect(() => { prevSelectorRef.current = currSelector }, deps)
 
         const stateRef = useRef<Result>()
-        if (stateRef.current === undefined || selector !== selectorRef.current) {
+        if (stateRef.current === undefined || currSelector !== prevSelectorRef.current) {
             stateRef.current = selector(this._state) as Result
         }
 
         const forceUpdate = useForceUpdate()
 
-        useEffect(() => {
-            const listener = () => {
-                const nextState = selectorRef.current(this._state) as Result
-
-                if (!equal(stateRef.current, nextState)) {
-                    stateRef.current = nextState
-                    forceUpdate()
-                }
+        useEffect(() => this.subscribe(() => {
+            const nextState = prevSelectorRef.current(this._state) as Result
+            if (!equal(stateRef.current, nextState)) {
+                stateRef.current = nextState
+                forceUpdate()
             }
-            return this.subscribe(listener)
-        }, [])
+        }), [])
 
         return stateRef.current
     }

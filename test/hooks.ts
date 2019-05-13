@@ -44,11 +44,16 @@ test('rendering should not be done twice in nested components.', t => {
 
 test('replace selector by deps', t => {
     const store = createStore({ a: 'a', b: 'b' })
+    t.plan(4)
     const { result, rerender } = renderHook(({ c }) => {
-        return store.useStore(s => s[c ? 'a' : 'b'], [c])
+        return store.useStore(s => {
+            t.pass() // for checking the number of replacements
+            return s[c ? 'a' : 'b']
+        }, [c])
     }, { initialProps: { c: true } })
 
     t.deepEqual(result.current, 'a')
     rerender({ c: false })
     t.deepEqual(result.current, 'b')
+    rerender({ c: false })
 })

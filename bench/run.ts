@@ -14,7 +14,9 @@ bench('test', b => {
 
     b.start()
     for (let i = 0; i < 1000; i++) {
-        act(() => update(s => s.items[s.items.length - 1].push(0)))
+        act(() => update(s => {
+            s.items[s.items.length - 1].push(0)
+        }))
     }
     b.end()
 })
