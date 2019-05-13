@@ -3,7 +3,6 @@ A really simple global state management using react hooks.
 
 [![npm](https://flat.badgen.net/npm/v/use-simple-store)](https://www.npmjs.com/package/use-simple-store)
 [![travis](https://flat.badgen.net/travis/skt-t1-byungi/use-simple-store)](https://travis-ci.org/skt-t1-byungi/use-simple-store)
-[![typescript](https://flat.badgen.net/badge/typescript/3.3.4/blue)](https://www.typescriptlang.org/)
 [![license](https://flat.badgen.net/github/license/skt-t1-byungi/use-simple-store)](https://github.com/skt-t1-byungi/use-simple-store/blob/master/LICENSE)
 
 
@@ -98,7 +97,7 @@ unsubscribe()
 ### store.getState()
 Returns current state.
 
-### store.useStore([selector])
+### store.useStore([selector[, deps]])
 A react hook to subscribe to store state changes.
 
 #### selector
@@ -114,6 +113,12 @@ function Todo({id}) {
 
     return <li onClick={handleClick}>{todo.text}</li>)
 }
+```
+
+#### deps
+Replace the selector with `deps`.
+```js
+const s = useStore(state => state[condition ? 'aaa':'bbb'], [condition])
 ```
 
 ## License

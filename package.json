@@ -35,6 +35,7 @@
         "react": "16.8.6",
         "react-dom": "16.8.6",
         "react-hooks-testing-library": "0.5.0",
+        "react-test-renderer": "^16.8.6",
         "ts-node": "8.1.0",
         "tslint": "5.16.0",
         "tslint-config-byungi": "0.1.1",
@@ -45,7 +46,8 @@
     },
     "dependencies": {
         "fast-deep-equal": "^2.0.1",
-        "immer": "^3.0.0"
+        "immer": "^3.0.0",
+        "use-force-update": "^1.0.5"
     },
     "ava": {
         "compileEnhancements": false,

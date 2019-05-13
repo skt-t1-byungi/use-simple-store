@@ -1,5 +1,6 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import produce, { Draft } from 'immer'
+import useForceUpdate from 'use-force-update'
 import equal = require('fast-deep-equal')
 
 type Listener<T> = (state: T) => void
@@ -38,23 +39,30 @@ export class Store<T extends object> {
         }
     }
 
-    public useStore<Result= T> (selector?: Selector<T,Result>) {
-        if (!selector) selector = passThrough as Selector<T,Result>
+    public useStore<Result= T> (selector: Selector<T,(Result | T) > = passThrough, deps: any[] = []): Result {
+        const selectorRef = useRef(selector)
+        useEffect(() => { selectorRef.current = selector }, deps)
 
-        const [state, setState] = useState(() => selector!(this._state))
+        const stateRef = useRef<Result>()
+        if (!stateRef.current || selector !== selectorRef.current) {
+            stateRef.current = selector(this._state) as Result
+        }
 
-        const prevRef = useRef(state)
-        useEffect(() => { prevRef.current = state }, [state])
+        const forceUpdate = useForceUpdate()
 
         useEffect(() => {
             const listener = () => {
-                const nextState = selector!(this._state)
-                if (!equal(prevRef.current, nextState)) setState(nextState)
+                const nextState = selectorRef.current(this._state) as Result
+
+                if (!equal(stateRef.current, nextState)) {
+                    stateRef.current = nextState
+                    forceUpdate()
+                }
             }
             return this.subscribe(listener)
         }, [])
 
-        return state
+        return stateRef.current
     }
 }
 
