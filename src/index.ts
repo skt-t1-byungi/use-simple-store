@@ -44,7 +44,7 @@ export class Store<T extends object> {
         useEffect(() => { selectorRef.current = selector }, deps)
 
         const stateRef = useRef<Result>()
-        if (!stateRef.current || selector !== selectorRef.current) {
+        if (stateRef.current === undefined || selector !== selectorRef.current) {
             stateRef.current = selector(this._state) as Result
         }
 
