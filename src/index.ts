@@ -42,18 +42,18 @@ export class Store<T extends object> {
     public useStore<Result= T> (selector: Selector<T,(Result | T) > = passThrough, deps: any[] = []): Result {
         const currSelector = useCallback(selector, deps)
 
-        const prevSelectorRef = useRef(selector)
-        useEffect(() => { prevSelectorRef.current = currSelector }, deps)
+        const selectorRef = useRef(selector)
+        useEffect(() => { selectorRef.current = currSelector }, deps)
 
         const stateRef = useRef<Result>()
-        if (stateRef.current === undefined || currSelector !== prevSelectorRef.current) {
+        if (stateRef.current === undefined || currSelector !== selectorRef.current) {
             stateRef.current = selector(this._state) as Result
         }
 
         const forceUpdate = useForceUpdate()
 
         useEffect(() => this.subscribe(() => {
-            const nextState = prevSelectorRef.current(this._state) as Result
+            const nextState = selectorRef.current(this._state) as Result
             if (!equal(stateRef.current, nextState)) {
                 stateRef.current = nextState
                 forceUpdate()

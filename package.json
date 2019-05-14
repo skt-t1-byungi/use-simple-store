@@ -1,6 +1,6 @@
 {
     "name": "use-simple-store",
-    "description": "A really simple global state management using react hooks.",
+    "description": "A very simple global state management using react hooks.",
     "version": "1.2.2",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -39,7 +39,7 @@
         "ts-node": "8.1.0",
         "tslint": "5.16.0",
         "tslint-config-byungi": "0.1.1",
-        "typescript": "3.4.5"
+        "typescript": "^3.4.5"
     },
     "peerDependencies": {
         "react": "^16.8.4"
