@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from 'react'
+import { useLayoutEffect, useRef, useCallback } from 'react'
 import produce, { Draft } from 'immer'
 import useForceUpdate from 'use-force-update'
 import equal = require('fast-deep-equal')
@@ -43,7 +43,7 @@ export class Store<T extends object> {
         const currSelector = useCallback(selector, deps)
 
         const selectorRef = useRef(selector)
-        useEffect(() => { selectorRef.current = currSelector }, deps)
+        useLayoutEffect(() => { selectorRef.current = currSelector }, deps)
 
         const stateRef = useRef<Result>()
         if (stateRef.current === undefined || currSelector !== selectorRef.current) {
@@ -52,7 +52,7 @@ export class Store<T extends object> {
 
         const forceUpdate = useForceUpdate()
 
-        useEffect(() => this.subscribe(() => {
+        useLayoutEffect(() => this.subscribe(() => {
             const nextState = selectorRef.current(this._state) as Result
             if (!equal(stateRef.current, nextState)) {
                 stateRef.current = nextState
