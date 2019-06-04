@@ -118,7 +118,7 @@ function Todo({id}) {
 #### deps
 Replace the selector with `deps`.
 ```js
-const s = useStore(state => state[condition ? 'aaa':'bbb'], [condition])
+const s = useStore(state => state[condition ? 'v1':'v2'], [condition])
 ```
 
 ## License
