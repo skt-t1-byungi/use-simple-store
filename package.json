@@ -26,27 +26,27 @@
     "devDependencies": {
         "@types/jsdom": "12.2.3",
         "@types/lodash.range": "3.2.6",
-        "@types/react": "16.8.17",
-        "ava": "1.4.1",
+        "@types/react": "16.8.19",
+        "ava": "2.0.0",
         "browser-env": "3.2.6",
-        "husky": "2.2.0",
+        "husky": "2.3.0",
         "lodash.range": "3.2.0",
         "nanobench": "2.1.1",
         "react": "16.8.6",
         "react-dom": "16.8.6",
-        "react-hooks-testing-library": "0.5.0",
+        "react-hooks-testing-library": "0.5.1",
         "react-test-renderer": "^16.8.6",
-        "ts-node": "8.1.0",
-        "tslint": "5.16.0",
+        "ts-node": "8.2.0",
+        "tslint": "5.17.0",
         "tslint-config-byungi": "0.1.1",
-        "typescript": "^3.4.5"
+        "typescript": "^3.5.1"
     },
     "peerDependencies": {
         "react": "^16.8.4"
     },
     "dependencies": {
         "fast-deep-equal": "^2.0.1",
-        "immer": "^3.0.0",
+        "immer": "^3.1.2",
         "use-force-update": "^1.0.5"
     },
     "ava": {
