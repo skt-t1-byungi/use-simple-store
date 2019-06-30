@@ -39,28 +39,31 @@ export class Store<T extends object> {
         }
     }
 
-    public useStore<Result= T> (selector: Selector<T,(Result | T) > = passThrough, deps: any[] = []): Result {
+    public useStore<F extends Selector<T, any>= Selector<T, T>> (
+        selector: F = (passThrough as any),
+        deps: any[] = []
+    ): ReturnType<F> {
         const currSelector = useCallback(selector, deps)
 
         const selectorRef = useRef(selector)
-        useLayoutEffect(() => { selectorRef.current = currSelector }, deps)
+        useLayoutEffect(() => { selectorRef.current = currSelector }, [currSelector])
 
-        const stateRef = useRef<Result>()
+        const stateRef = useRef<ReturnType<F>>()
         if (stateRef.current === undefined || currSelector !== selectorRef.current) {
-            stateRef.current = selector(this._state) as Result
+            stateRef.current = currSelector(this._state)
         }
 
         const forceUpdate = useForceUpdate()
 
         useLayoutEffect(() => this.subscribe(() => {
-            const nextState = selectorRef.current(this._state) as Result
+            const nextState = selectorRef.current(this._state)
             if (!equal(stateRef.current, nextState)) {
                 stateRef.current = nextState
                 forceUpdate()
             }
         }), [])
 
-        return stateRef.current
+        return stateRef.current as ReturnType<F>
     }
 }
 
