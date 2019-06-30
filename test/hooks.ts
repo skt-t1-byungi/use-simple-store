@@ -1,5 +1,5 @@
 import test from 'ava'
-import { renderHook, act } from 'react-hooks-testing-library'
+import { renderHook, act } from '@testing-library/react-hooks'
 import { createElement, Fragment } from 'react'
 import createStore from '../src'
 import './_browser'
