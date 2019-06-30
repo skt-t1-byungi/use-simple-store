@@ -97,7 +97,7 @@ unsubscribe()
 ### store.getState()
 Returns current state.
 
-### store.useStore([selector[, deps]])
+### store.useStore([selector[, dependencies]])
 A react hook to subscribe to store state changes.
 
 #### selector
@@ -115,8 +115,8 @@ function Todo({id}) {
 }
 ```
 
-#### deps
-Replace the selector with `deps`.
+#### dependencies
+Replace the selector with `dependencies`.
 ```js
 const s = useStore(state => state[condition ? 'v1':'v2'], [condition])
 ```
