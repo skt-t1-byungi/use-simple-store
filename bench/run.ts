@@ -1,4 +1,4 @@
-import { renderHook, act } from 'react-hooks-testing-library'
+import { renderHook, act } from '@testing-library/react-hooks'
 import createStore from '../src'
 import bench = require('nanobench')
 import browserEnv = require('browser-env')

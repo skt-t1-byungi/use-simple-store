@@ -44,11 +44,11 @@ export class Store<T extends object> {
         deps: any[] = []
     ): ReturnType<F> {
         const currSelector = useCallback(selector, deps)
-
         const selectorRef = useRef(selector)
-        useLayoutEffect(() => { selectorRef.current = currSelector }, [currSelector])
-
         const stateRef = useRef<ReturnType<F>>()
+
+        useLayoutEffect(() => { selectorRef.current = currSelector })
+
         if (stateRef.current === undefined || currSelector !== selectorRef.current) {
             stateRef.current = currSelector(this._state)
         }
