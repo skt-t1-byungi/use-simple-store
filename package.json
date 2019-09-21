@@ -45,7 +45,7 @@
         "react": "^16.8.4"
     },
     "dependencies": {
-        "fast-deep-equal": "^2.0.1",
+        "dequal": "^1.0.0",
         "immer": "^4.0.0",
         "use-force-update": "^1.0.7"
     },

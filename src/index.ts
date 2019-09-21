@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useCallback } from 'react'
 import produce, { Draft } from 'immer'
 import useForceUpdate from 'use-force-update'
-import equal = require('fast-deep-equal')
+import equal from 'dequal'
 
 type Listener<T> = (state: T) => void
 type Mutator<T> = (state: Draft<T>) => void
@@ -25,10 +25,9 @@ export class Store<T extends object> {
 
     public update (mutate: Mutator<T>) {
         const nextState = produce(this._state, draft => mutate(draft))
-        if (equal(this._state, nextState)) return
-
-        this._state = nextState
-        this._listeners.forEach(fn => fn(this._state))
+        if (this._state !== (this._state = nextState)) {
+            this._listeners.forEach(fn => fn(this._state))
+        }
     }
 
     public subscribe (listener: Listener<T>) {

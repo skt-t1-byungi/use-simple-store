@@ -7,8 +7,7 @@
         "outDir": "dist",
         "strict": true,
         "typeRoots": ["./types"],
-        "noUnusedLocals":true,
-        "noUnusedParameters": true
+        "esModuleInterop": true
     },
     "include": [
         "src"
