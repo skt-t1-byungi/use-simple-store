@@ -30,7 +30,7 @@ test('rendering should not be done twice in nested components.', t => {
     renderHook(() => {
         calls++
         return store.useStore(s => s.val)
-    }, { wrapper : wrapper as any })
+    }, { wrapper: wrapper as any })
 
     t.is(calls, 2)
 
@@ -52,8 +52,8 @@ test('replace selector by deps', t => {
         }, [c])
     }, { initialProps: { c: true } })
 
-    t.deepEqual(result.current, 'a')
+    t.is(result.current, 'a')
     rerender({ c: false })
-    t.deepEqual(result.current, 'b')
+    t.is(result.current, 'b')
     rerender({ c: false })
 })
