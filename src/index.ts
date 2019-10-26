@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useCallback, useReducer } from 'react'
+import { useLayoutEffect, useRef, useCallback, useReducer, Dispatch } from 'react'
 import produce, { Draft } from 'immer'
 import equal from 'dequal'
 
@@ -44,7 +44,7 @@ export class Store<T extends object> {
         const currSelector = useCallback(selector, deps)
         const selectorRef = useRef(selector)
         const stateRef = useRef<ReturnType<F>>()
-        const [, dispatch] = useReducer(() => ({}), {})
+        const forceUpdate: Dispatch<void> = useReducer(() => ({}), {})[1]
 
         useLayoutEffect(() => { selectorRef.current = currSelector })
 
@@ -55,8 +55,8 @@ export class Store<T extends object> {
         useLayoutEffect(() => this.subscribe(() => {
             const nextState = selectorRef.current(this._state)
             if (!equal(stateRef.current, nextState)) {
-                stateRef.current = nextState;
-                (dispatch as any)()
+                stateRef.current = nextState
+                forceUpdate()
             }
         }), [])
 
