@@ -1,6 +1,5 @@
-import { useLayoutEffect, useRef, useCallback } from 'react'
+import { useLayoutEffect, useRef, useCallback, useReducer } from 'react'
 import produce, { Draft } from 'immer'
-import useForceUpdate from 'use-force-update'
 import equal from 'dequal'
 
 type Listener<T> = (state: T) => void
@@ -45,6 +44,7 @@ export class Store<T extends object> {
         const currSelector = useCallback(selector, deps)
         const selectorRef = useRef(selector)
         const stateRef = useRef<ReturnType<F>>()
+        const [, dispatch] = useReducer(() => ({}), {})
 
         useLayoutEffect(() => { selectorRef.current = currSelector })
 
@@ -52,13 +52,11 @@ export class Store<T extends object> {
             stateRef.current = currSelector(this._state)
         }
 
-        const forceUpdate = useForceUpdate()
-
         useLayoutEffect(() => this.subscribe(() => {
             const nextState = selectorRef.current(this._state)
             if (!equal(stateRef.current, nextState)) {
-                stateRef.current = nextState
-                forceUpdate()
+                stateRef.current = nextState;
+                (dispatch as any)()
             }
         }), [])
 

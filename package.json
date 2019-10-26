@@ -41,8 +41,7 @@
     },
     "dependencies": {
         "dequal": "^1.0.0",
-        "immer": "^4.0.0",
-        "use-force-update": "^1.0.7"
+        "immer": "^4.0.0"
     },
     "ava": {
         "compileEnhancements": false,
