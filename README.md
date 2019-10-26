@@ -1,5 +1,5 @@
 # use-simple-store 🏬
-A very simple global state management using react hooks.
+Simple global state management using react hook.
 
 [![npm](https://flat.badgen.net/npm/v/use-simple-store)](https://www.npmjs.com/package/use-simple-store)
 [![travis](https://flat.badgen.net/travis/skt-t1-byungi/use-simple-store)](https://travis-ci.org/skt-t1-byungi/use-simple-store)
