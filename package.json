@@ -41,7 +41,7 @@
     },
     "dependencies": {
         "dequal": "^1.0.0",
-        "immer": "^4.0.0"
+        "immer": "^5.0.0"
     },
     "ava": {
         "compileEnhancements": false,
