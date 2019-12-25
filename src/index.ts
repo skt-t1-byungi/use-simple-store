@@ -31,10 +31,7 @@ export class Store<T extends object> {
 
     subscribe (listener: Listener<T>) {
         this._listeners.push(listener)
-
-        return () => {
-            this._listeners.splice(this._listeners.indexOf(listener), 1)
-        }
+        return () => void this._listeners.splice(this._listeners.indexOf(listener), 1)
     }
 
     useStore<F extends Selector<T, any>= Selector<T, T>> (
