@@ -18,18 +18,18 @@ export class Store<T extends object> {
         this.useStore = this.useStore.bind(this)
     }
 
-    public getState (): Readonly<T> {
+    getState (): Readonly<T> {
         return this._state
     }
 
-    public update (mutate: Mutator<T>) {
+    update (mutate: Mutator<T>) {
         const nextState = produce(this._state, draft => mutate(draft))
         if (this._state !== (this._state = nextState)) {
             this._listeners.forEach(fn => fn(this._state))
         }
     }
 
-    public subscribe (listener: Listener<T>) {
+    subscribe (listener: Listener<T>) {
         this._listeners.push(listener)
 
         return () => {
@@ -37,7 +37,7 @@ export class Store<T extends object> {
         }
     }
 
-    public useStore<F extends Selector<T, any>= Selector<T, T>> (
+    useStore<F extends Selector<T, any>= Selector<T, T>> (
         selector: F = (passThrough as any),
         deps: any[] = []
     ): ReturnType<F> {
