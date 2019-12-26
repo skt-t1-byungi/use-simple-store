@@ -41,7 +41,8 @@ function App() {
 Create a store.
 
 ### store.update([mutate])
-Update the state by mutating. Use [immer](https://github.com/mweststrate/immer) internally.
+Update state by mutating. (using [immer](https://github.com/mweststrate/immer))
+
 
 ```js
 const addTodo = (id, text) => update(state => {
@@ -53,7 +54,7 @@ const deleteTodo = id => update(state => {
 })
 ```
 #### Asynchronous update.
-The `update` function does not support promise. If you need an asynchronous update, see the example below: 👇
+The `update()` does not support promise. If you need an asynchronous update, see the example below: 👇
 
 ```js
 async function fetchTodos() {
@@ -85,7 +86,7 @@ update(state => { state.count++ }) // => count: 2
 ```
 
 #### Unsubscribe
-The `subscribe` returns a function to cancel the subscription.
+The `subscribe()` returns a function to unsubscribe.
 ```js
 const unsubscribe = subscribe(listener)
 
