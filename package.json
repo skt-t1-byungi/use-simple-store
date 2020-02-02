@@ -25,7 +25,7 @@
     "devDependencies": {
         "@types/jsdom": "12.2.4",
         "@types/react": "16.9.19",
-        "ava": "2.4.0",
+        "ava": "3.2.0",
         "browser-env": "3.3.0",
         "eslint": "6.8.0",
         "eslint-config-byungi": "0.7.7",
