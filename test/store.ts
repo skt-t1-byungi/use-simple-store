@@ -1,4 +1,5 @@
 import test from 'ava'
+
 import createStore from '../src'
 
 test('getState, update', t => {

@@ -1,7 +1,9 @@
-import test from 'ava'
-import { renderHook, act } from '@testing-library/react-hooks'
 import { createElement, Fragment } from 'react'
+import { act, renderHook } from '@testing-library/react-hooks'
+import test from 'ava'
+
 import createStore from '../src'
+
 import './_browser'
 
 test('render, update', t => {

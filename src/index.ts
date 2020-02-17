@@ -1,6 +1,6 @@
-import { useLayoutEffect, useRef, useCallback, useReducer, Dispatch } from 'react'
-import produce, { Draft } from 'immer'
+import { Dispatch, useCallback, useLayoutEffect, useReducer, useRef } from 'react'
 import equal from 'dequal'
+import produce, { Draft } from 'immer'
 
 type Listener<T> = (state: T) => void
 type Mutator<T> = (state: Draft<T>) => void
