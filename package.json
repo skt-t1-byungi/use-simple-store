@@ -25,7 +25,7 @@
     "devDependencies": {
         "@types/jsdom": "16.1.0",
         "@types/react": "16.9.19",
-        "ava": "3.3.0",
+        "ava": "^3.3.0",
         "browser-env": "3.3.0",
         "eslint": "6.8.0",
         "eslint-config-byungi": "0.8.1",
@@ -44,7 +44,6 @@
         "immer": "^5.0.0"
     },
     "ava": {
-        "compileEnhancements": false,
         "extensions": [
             "ts"
         ],
