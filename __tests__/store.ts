@@ -12,7 +12,7 @@ test('getState(), update()', () => {
 
 test('subscribe(), unsubscribe()', () => {
     const store = createStore({ n: 0 })
-    const mo = jest.fn(() => {})
+    const mo = jest.fn()
 
     const unsubscribe = store.subscribe(mo)
     store.update(s => { s.n++ })
@@ -24,7 +24,7 @@ test('subscribe(), unsubscribe()', () => {
 
 test('Only runs when the state changes.', () => {
     const store = createStore({ v: 'a' })
-    const mo = jest.fn(() => {})
+    const mo = jest.fn()
     store.subscribe(mo)
 
     store.update(s => { s.v = 'a' })
