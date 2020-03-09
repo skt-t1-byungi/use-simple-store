@@ -43,7 +43,7 @@
     },
     "dependencies": {
         "dequal": "^1.0.0",
-        "immer": "^5.0.0"
+        "immer": "^6.0.0"
     },
     "eslintConfig": {
         "extends": "byungi/typescript"
