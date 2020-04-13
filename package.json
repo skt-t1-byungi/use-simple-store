@@ -24,7 +24,7 @@
     },
     "devDependencies": {
         "@types/jest": "25.2.1",
-        "@types/react": "16.9.32",
+        "@types/react": "16.9.34",
         "browser-env": "3.3.0",
         "eslint": "6.8.0",
         "eslint-config-byungi": "0.10.4",
