@@ -35,7 +35,7 @@ export class Store<T extends object> {
     }
 
     useStore<F extends Selector<T, any>= Selector<T, T>> (
-        selector: F = (passThrough as any),
+        selector: F = passThrough as any,
         deps: any[] = []
     ): ReturnType<F> {
         const currSelector = useCallback(selector, deps)
