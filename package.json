@@ -19,15 +19,15 @@
     ],
     "scripts": {
         "test": "jest",
-        "build": "rm -rf dist && tsc",
+        "build": "rm -rf dist && tsc -p tsconfig.prod.json",
         "prepublishOnly": "npm run test && npm run build"
     },
     "devDependencies": {
         "@types/jest": "25.2.3",
         "@types/react": "16.9.35",
         "browser-env": "3.3.0",
-        "eslint": "6.8.0",
-        "eslint-config-byungi": "0.11.1",
+        "eslint": "7.2.0",
+        "eslint-config-byungi": "0.12.2",
         "jest": "26.0.1",
         "react": "16.13.1",
         "react-dom": "16.13.1",
@@ -42,9 +42,12 @@
     },
     "dependencies": {
         "dequal": "^1.0.0",
-        "immer": "^6.0.0"
+        "immer": "^6.0.9"
     },
     "eslintConfig": {
         "extends": "byungi/typescript"
-    }
+    },
+    "eslintIgnore": [
+        "dist"
+    ]
 }
