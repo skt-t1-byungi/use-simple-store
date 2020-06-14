@@ -49,13 +49,17 @@ export class Store<T> {
             stateRef.current = currSelector(this._state)
         }
 
-        useLayoutEffect(() => this.subscribe(() => {
-            const nextState = selectorRef.current(this._state)
-            if (!equal(stateRef.current, nextState)) {
-                stateRef.current = nextState
-                forceUpdate()
+        useLayoutEffect(() => {
+            const checkUpdate = () => {
+                const nextState = selectorRef.current(this._state)
+                if (!equal(stateRef.current, nextState)) {
+                    stateRef.current = nextState
+                    forceUpdate()
+                }
             }
-        }), [])
+            checkUpdate()
+            return this.subscribe(checkUpdate)
+        }, [])
 
         return stateRef.current as ReturnType<F>
     }

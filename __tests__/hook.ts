@@ -20,3 +20,14 @@ test('Selector replacement', () => {
     rerender(false)
     expect(result.current).toBe(2)
 })
+
+test('Update during render', () => {
+    const store = createStore({ n: 0 })
+    let once = 0
+    const { result } = renderHook(() => {
+        const ret = store.useStore()
+        if (!once++) store.update(s => { s.n++ })
+        return ret
+    })
+    expect(result.current.n).toBe(1)
+})
