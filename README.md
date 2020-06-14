@@ -45,14 +45,17 @@ Update state by mutating. (using [immer](https://github.com/mweststrate/immer))
 
 
 ```js
-const addTodo = (id, text) => update(state => {
-    state.todos[id] = { id, text, done: false }
+const todos = createStore({})
+
+const addTodo = (id, text) => todos.update(state => {
+    state[id] = { id, text, done: false }
 })
 
-const deleteTodo = id => update(state => {
-    delete state.todos[id]
+const deleteTodo = id => todos.update(state => {
+    delete state[id]
 })
 ```
+
 #### Asynchronous update.
 The `update()` does not support promise. If you need an asynchronous update, see the example below: 👇
 
@@ -106,10 +109,10 @@ Select only the necessary state of the store. When the state of the store is lar
 
 ```js
 function Todo({id}) {
-    const todo = useStore(s => s.todos[id])
+    const todo = useStore(s => s[id])
 
     const handleClick = () => {
-        update(s => { s.todos[id].done = !todo.done })
+        update(s => { s[id].done = !todo.done })
     }
 
     return <li onClick={handleClick}>{todo.text}</li>)
