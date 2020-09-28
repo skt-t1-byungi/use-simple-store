@@ -26,7 +26,7 @@
         "@types/jest": "26.0.14",
         "@types/react": "16.9.49",
         "browser-env": "3.3.0",
-        "eslint": "7.9.0",
+        "eslint": "7.10.0",
         "eslint-config-byungi": "0.14.1",
         "jest": "26.4.2",
         "react": "16.13.1",
