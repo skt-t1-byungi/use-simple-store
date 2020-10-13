@@ -1,6 +1,6 @@
 import { Dispatch, useCallback, useLayoutEffect, useReducer, useRef } from 'react'
-import { dequal } from 'dequal'
 import produce, { Draft } from 'immer'
+import shallowEqual from 'shallowequal'
 
 type Listener<T> = (state:T) => void
 type Mutator<T> = (state:Draft<T>) => void
@@ -52,7 +52,7 @@ export class Store<T> {
         useLayoutEffect(() => {
             const checkUpdate = () => {
                 const nextState = selectorRef.current(this._state)
-                if (!dequal(stateRef.current, nextState)) {
+                if (!shallowEqual(stateRef.current, nextState)) {
                     stateRef.current = nextState
                     forceUpdate()
                 }
