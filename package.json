@@ -23,7 +23,7 @@
         "prepublishOnly": "npm run test && npm run build"
     },
     "devDependencies": {
-        "@types/jest": "26.0.14",
+        "@types/jest": "26.0.15",
         "@types/react": "16.9.53",
         "@types/shallowequal": "1.1.1",
         "browser-env": "3.3.0",
