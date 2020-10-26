@@ -30,16 +30,16 @@
         "eslint": "7.12.0",
         "eslint-config-byungi": "0.14.3",
         "jest": "26.6.1",
-        "react": "16.14.0",
-        "react-dom": "16.14.0",
+        "react": "17.0.1",
+        "react-dom": "17.0.1",
         "react-hooks-testing-library": "0.6.0",
-        "react-test-renderer": "16.14.0",
+        "react-test-renderer": "17.0.1",
         "ts-jest": "26.4.2",
         "ts-node": "9.0.0",
         "typescript": "4.0.3"
     },
     "peerDependencies": {
-        "react": "^16.8.4"
+        "react": "^16.8.4 || ^17.0.0"
     },
     "dependencies": {
         "immer": "^7.0.0",
