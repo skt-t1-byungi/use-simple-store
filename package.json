@@ -24,7 +24,7 @@
     },
     "devDependencies": {
         "@types/jest": "26.0.15",
-        "@types/react": "16.9.53",
+        "@types/react": "16.9.55",
         "@types/shallowequal": "1.1.1",
         "browser-env": "3.3.0",
         "eslint": "7.12.0",
