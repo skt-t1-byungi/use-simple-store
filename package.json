@@ -29,7 +29,7 @@
         "browser-env": "3.3.0",
         "eslint": "7.12.1",
         "eslint-config-byungi": "0.14.3",
-        "jest": "26.6.1",
+        "jest": "26.6.3",
         "react": "17.0.1",
         "react-dom": "17.0.1",
         "react-hooks-testing-library": "0.6.0",
