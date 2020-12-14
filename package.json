@@ -23,7 +23,7 @@
         "prepublishOnly": "npm run test && npm run build"
     },
     "devDependencies": {
-        "@testing-library/react-hooks": "^3.6.0",
+        "@testing-library/react-hooks": "3.7.0",
         "@types/jest": "26.0.19",
         "@types/react": "17.0.0",
         "@types/shallowequal": "1.1.1",
