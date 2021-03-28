@@ -2,9 +2,7 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "declaration": true,
-        "outDir": "dist",
+        "outDir": "dist"
     },
-    "files": [
-        "src/index.ts"
-    ]
+    "files": ["src/index.ts"]
 }

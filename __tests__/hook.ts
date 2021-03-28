@@ -7,7 +7,11 @@ test('render, update', () => {
     const { result } = renderHook(() => store.useStore())
 
     expect(result.current).toEqual({ n: 0 })
-    act(() => store.update(s => { s.n++ }))
+    act(() =>
+        store.update(s => {
+            s.n++
+        })
+    )
 
     expect(result.current).toEqual({ n: 1 })
 })
@@ -26,7 +30,10 @@ test('Update during render', () => {
     let once = 0
     const { result } = renderHook(() => {
         const ret = store.useStore()
-        if (!once++) store.update(s => { s.n++ })
+        if (!once++)
+            store.update(s => {
+                s.n++
+            })
         return ret
     })
     expect(result.current.n).toBe(1)
