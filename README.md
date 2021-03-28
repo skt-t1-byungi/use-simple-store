@@ -15,7 +15,7 @@ npm i use-simple-store
 ```js
 import createStore from 'use-simple-store'
 
-const {useStore, update} = createStore({count: 0})
+const { useStore, update } = createStore({ count: 0 })
 
 const increment = () => update(state => {
     state.count = state.count + 1
@@ -26,7 +26,8 @@ const decrement = () => update(state => {
 })
 
 function App() {
-    const {count} = useStore()
+    const { count } = useStore()
+
     return (
         <div>
             <span>{count}</span>
@@ -41,7 +42,7 @@ function App() {
 Create a store.
 
 ### store.update([mutate])
-Update state by mutating. (using [immer](https://github.com/mweststrate/immer))
+Update state by mutate function. (using [immer](https://github.com/mweststrate/immer))
 
 
 ```js
@@ -78,7 +79,7 @@ async function fetchTodos() {
 Subscribe to state changes.
 
 ```js
-const {subscribe, update} = createStore({count: 0})
+const { subscribe, update } = createStore({count: 0})
 
 subscribe(state => {
     console.log(`count: ${state.count}`)
@@ -101,18 +102,20 @@ unsubscribe()
 ### store.getState()
 Returns current state.
 
-### store.useStore([selector[, dependencies]])
+### store.useStore([selector]])
 A react hook to subscribe to store state changes.
 
 #### selector
 Select only the necessary state of the store. When the state of the store is large, its performance is better.
 
 ```js
-function Todo({id}) {
-    const todo = useStore(s => s[id])
+function Todo({ id }) {
+    const todo = useStore(state => state[id])
 
     const handleClick = () => {
-        update(s => { s[id].done = !todo.done })
+        update(state => {
+            state[id].done = !todo.done
+        })
     }
 
     return <li onClick={handleClick}>{todo.text}</li>)

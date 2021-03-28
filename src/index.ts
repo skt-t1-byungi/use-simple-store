@@ -54,8 +54,7 @@ export class Store<T> {
         useLayoutEffect(() => {
             const checkUpdate = () => {
                 const nextState = selectorRef.current(this._state)
-                if (!shallowEqual(stateRef.current, nextState)) {
-                    stateRef.current = nextState
+                if (!shallowEqual(stateRef.current, (stateRef.current = nextState))) {
                     forceUpdate()
                 }
             }
