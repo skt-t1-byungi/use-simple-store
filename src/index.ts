@@ -23,7 +23,7 @@ export class Store<T> {
     }
 
     update(mutate: Mutator<T>) {
-        const nextState = produce(this._state, draft => mutate(draft))
+        const nextState = produce(this._state, mutate)
         if (this._state !== (this._state = nextState)) {
             this._listeners.forEach(fn => fn(this._state))
         }
