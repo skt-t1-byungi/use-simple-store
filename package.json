@@ -24,7 +24,7 @@
     },
     "devDependencies": {
         "@testing-library/react-hooks": "7.0.1",
-        "@types/jest": "26.0.24",
+        "@types/jest": "27.0.1",
         "@types/react": "17.0.18",
         "@types/shallowequal": "1.1.1",
         "browser-env": "3.3.0",
