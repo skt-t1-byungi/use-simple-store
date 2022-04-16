@@ -1,7 +1,7 @@
 {
     "name": "use-simple-store",
-    "description": "Simple global state management using react hook.",
-    "version": "1.5.0",
+    "description": "Simple state management using react hook.",
+    "version": "1.6.0",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "repository": "https://github.com/skt-t1-byungi/use-simple-store",
@@ -23,15 +23,17 @@
         "prepublishOnly": "npm run test && npm run build"
     },
     "devDependencies": {
-        "@testing-library/react-hooks": "7.0.2",
+        "@testing-library/react-hooks": "8.0.0",
         "@types/jest": "27.4.1",
-        "@types/react": "17.0.44",
+        "@types/node": "^17.0.24",
+        "@types/react": "^17",
         "@types/shallowequal": "1.1.1",
+        "@types/use-sync-external-store": "^0.0.3",
         "browser-env": "3.3.0",
         "jest": "27.5.1",
         "prettier": "2.6.2",
-        "react": "17.0.2",
-        "react-dom": "17.0.2",
+        "react": "^17",
+        "react-dom": "^17",
         "ts-jest": "27.1.4",
         "ts-node": "10.7.0",
         "typescript": "4.6.3"
@@ -40,7 +42,8 @@
         "react": "^16.8.4 || ^17.0.0"
     },
     "dependencies": {
-        "immer": "^9.0.3",
-        "shallowequal": "^1.1.0"
+        "immer": "^9.0.12",
+        "shallowequal": "^1.1.0",
+        "use-sync-external-store": "^1.0.0"
     }
 }

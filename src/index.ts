@@ -1,6 +1,7 @@
-import { Dispatch, useCallback, useLayoutEffect, useReducer, useRef } from 'react'
+import { useCallback } from 'react'
 import produce, { Draft } from 'immer'
 import shallowEqual from 'shallowequal'
+import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/shim/with-selector'
 
 type Listener<T> = (state: T) => void
 type Mutator<T> = (state: Draft<T>) => void
@@ -38,31 +39,13 @@ export class Store<T> {
         selector: F = passThrough as any,
         deps: any[] = []
     ): ReturnType<F> {
-        const currSelector = useCallback(selector, deps)
-        const selectorRef = useRef(selector)
-        const stateRef = useRef<ReturnType<F>>()
-        const forceUpdate: Dispatch<void> = useReducer(() => ({}), {})[1]
-
-        useLayoutEffect(() => {
-            selectorRef.current = currSelector
-        })
-
-        if (stateRef.current === undefined || currSelector !== selectorRef.current) {
-            stateRef.current = currSelector(this._state)
-        }
-
-        useLayoutEffect(() => {
-            const checkUpdate = () => {
-                const nextState = selectorRef.current(this._state)
-                if (!shallowEqual(stateRef.current, (stateRef.current = nextState))) {
-                    forceUpdate()
-                }
-            }
-            checkUpdate()
-            return this.subscribe(checkUpdate)
-        }, [])
-
-        return stateRef.current as ReturnType<F>
+        return useSyncExternalStoreWithSelector(
+            this.subscribe,
+            this.getState,
+            this.getState,
+            useCallback(selector, deps),
+            shallowEqual
+        )
     }
 }
 
